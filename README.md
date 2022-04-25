@@ -1,8 +1,8 @@
-# htaccess-for-laravel
-Script .htaccess untuk pengembangan laravel
+# htaccess for Laravel
+Script `.htaccess` untuk pengembangan project laravel
 
 # Cara penggunaan
-1. Buat file `.htaccess` pada root folder dan isikan script berikut:
+1. Buat file `.htaccess` pada root folder project dan isikan script berikut:
 
 ```php
 # Display error
@@ -28,7 +28,7 @@ php_value display_errors 1
 </IfModule>
 ```
 
-2. Buat file `index.php` pada folder root dan isikan script berikut:
+2. Buat file `index.php` pada root folder project dan isikan script berikut:
 
 ```php
 <?php
