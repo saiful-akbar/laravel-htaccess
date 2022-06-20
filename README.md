@@ -39,8 +39,9 @@ php_value display_errors 1
 $uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
 /**
- * Cek path pada variable $uri.
- * Serta cek apakan file public/index.php ada atau tidak.
+ * File ini memungkinkan kita untuk meniru fungsionalitas "mod_rewrite" Apache dari server web PHP bawaan.
+ * Ini memberikan cara yang nyaman untuk menguji aplikasi Laravel
+ * tanpa menginstal perangkat lunak server web "nyata" di sini.
  */
 if ($uri !== '/' && file_exists(__DIR__ . '/public' . $uri)) {
     return false;
