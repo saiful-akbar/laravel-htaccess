@@ -6,7 +6,7 @@ Script `.htaccess` untuk pengembangan project laravel
 
 ```php
 # Display error
-php_value display_errors 1
+# php_value display_errors 1
 
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
@@ -39,9 +39,7 @@ php_value display_errors 1
 $uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
 /**
- * File ini memungkinkan kita untuk meniru fungsionalitas "mod_rewrite" Apache dari server web PHP bawaan.
- * Ini memberikan cara yang nyaman untuk menguji aplikasi Laravel
- * tanpa menginstal perangkat lunak server web "nyata" di sini.
+ * File ini memungkinkan kita untuk meniru fungsionalitas "mod_rewrite" dari apache.
  */
 if ($uri !== '/' && file_exists(__DIR__ . '/public' . $uri)) {
     return false;
