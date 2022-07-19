@@ -1,13 +1,32 @@
-# htaccess for Laravel
-Script `.htaccess` untuk pengembangan project laravel
+# htaccess untuk project Laravel atau php MVC
+Script `.htaccess` untuk pengembangan project laravel atau php native MVC
 
 # Cara penggunaan
-1. Buat file `.htaccess` pada root folder project dan isikan script berikut:
+1. Buat file `index.php` pada root folder.
 
 ```php
-# Display error
-# php_value display_errors 1
+<?php
 
+$uri = urldecode(
+    parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
+);
+
+/**
+ * Cek apakah ada file pada folder public yang sesuai dengan uri.
+ * Jika ada kembalikan nilai false.
+ */
+if ($uri != '/' && file_exists(__DIR__ . '/public' . $uri)) {
+    return false;
+}
+
+require_once __DIR__ . '/public/index.php';
+
+?>
+```
+
+2. Buat file `.htaccess` pada root folder.
+
+```php
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews
@@ -28,22 +47,27 @@ Script `.htaccess` untuk pengembangan project laravel
 </IfModule>
 ```
 
-2. Buat file `index.php` pada root folder project dan isikan script berikut:
-
+3. Buat file `.htaccess` pada folder public
 ```php
-<?php
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
 
-/**
- * Ambil path pada url
- */
-$uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+    RewriteEngine On
 
-/**
- * File ini memungkinkan kita untuk meniru fungsionalitas "mod_rewrite" dari apache.
- */
-if ($uri !== '/' && file_exists(__DIR__ . '/public' . $uri)) {
-    return false;
-}
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-require_once __DIR__ . '/public/index.php';
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
 ```
