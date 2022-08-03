@@ -1,19 +1,24 @@
-# htaccess untuk project Laravel atau php MVC
+# .htaccess untuk project Laravel atau php MVC
 Script `.htaccess` untuk pengembangan project laravel atau php native MVC
 
-# Cara penggunaan
-1. Buat file `index.php` pada root folder.
+## Cara penggunaan
+
+#### 1. Buat file `index.php` pada root folder dan isikan script berikut:
 
 ```php
 <?php
 
+/**
+ * Ambil URI
+ * 
+ * @var string
+ */
 $uri = urldecode(
     parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
 );
 
 /**
- * Cek apakah ada file pada folder public yang sesuai dengan uri.
- * Jika ada kembalikan nilai false.
+ * Jika ada file pada folder public yang sesuai dengan request uri kembalikan nilai false.
  */
 if ($uri != '/' && file_exists(__DIR__ . '/public' . $uri)) {
     return false;
@@ -21,10 +26,9 @@ if ($uri != '/' && file_exists(__DIR__ . '/public' . $uri)) {
 
 require_once __DIR__ . '/public/index.php';
 
-?>
 ```
 
-2. Buat file `.htaccess` pada root folder.
+#### 2. Buat file `.htaccess` pada root folder dan isikan script berikut:
 
 ```php
 <IfModule mod_rewrite.c>
@@ -47,7 +51,7 @@ require_once __DIR__ . '/public/index.php';
 </IfModule>
 ```
 
-3. Buat file `.htaccess` pada folder public
+#### 3. Buat file `.htaccess` pada public folder dan isikan script berikut:
 ```php
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
