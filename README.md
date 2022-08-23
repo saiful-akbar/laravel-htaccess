@@ -9,16 +9,14 @@ Script `.htaccess` untuk pengembangan project laravel atau php native MVC
 <?php
 
 /**
- * Ambil URI
- * 
- * @var string
+ * Ambil uri
  */
 $uri = urldecode(
     parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
 );
 
 /**
- * Jika ada file pada folder public yang sesuai dengan request uri kembalikan nilai false.
+ * Cek uri & priksa folder public
  */
 if ($uri != '/' && file_exists(__DIR__ . '/public' . $uri)) {
     return false;
