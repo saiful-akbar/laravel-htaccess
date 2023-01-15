@@ -8,23 +8,22 @@ Script `.htaccess` untuk pengembangan project laravel atau php native MVC
 ```php
 <?php
 
-/**
- * Ambil uri/path dari url
- * 
- * @var string
- */
+$publicPath = __DIR__ . '/public';
+
 $uri = urldecode(
-    parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
+    parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? ''
 );
 
 /**
- * Periksa uri & folder public
+ * File ini memungkinkan kita untuk meniru fungsionalitas "mod_rewrite" Apache dari
+ * server web PHP bawaan. Ini memberikan cara mudah untuk menguji aplikasi
+ * Laravel tanpa menginstal perangkat lunak server web "nyata" di sini.
  */
-if ($uri !== '/' && file_exists(__DIR__ . '/public' . $uri)) {
+if ($uri !== '/' && file_exists($publicPath . $uri)) {
     return false;
 }
 
-require_once __DIR__ . '/public/index.php';
+require_once $publicPath . '/index.php';
 
 ```
 
