@@ -1,8 +1,8 @@
-# .htaccess untuk project Laravel atau php MVC
+# .htaccess untuk project Laravel & php MVC
 
 ## Cara penggunaan
 
-### 1. Buat file `index.php` pada root folder dan isikan script berikut:
+#### 1. Buat file `index.php` pada root folder lalu salin script berikut:
 
 ```php
 <?php
@@ -26,7 +26,7 @@ require_once $publicPath . '/index.php';
 
 ```
 
-### 2. Buat file `.htaccess` pada root folder dan isikan script berikut:
+#### 2. Buat file `.htaccess` pada root folder lalu salin script berikut:
 
 ```php
 <IfModule mod_rewrite.c>
@@ -49,7 +49,7 @@ require_once $publicPath . '/index.php';
 </IfModule>
 ```
 
-### 3. Buat file `.htaccess` pada public folder dan isikan script berikut:
+#### 3. Buat file `.htaccess` pada public folder lalu salin script berikut:
 ```php
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
