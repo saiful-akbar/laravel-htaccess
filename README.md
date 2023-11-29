@@ -14,11 +14,7 @@ $uri = urldecode(
 );
 
 /**
- * id: File ini memungkinkan kita untuk meniru fungsionalitas "mod_rewrite" Apache dari
- * server web PHP bawaan. Ini menyediakan cara yang mudah untuk menguji aplikasi Laravel
- * tanpa perlu menginstal perangkat lunak server web "asli" di sini.
- * 
- * en: This file allows us to emulate Apache's "mod_rewrite" functionality from the
+ * This file allows us to emulate Apache's "mod_rewrite" functionality from the
  * built-in PHP web server. This provides a convenient way to test a Laravel
  * application without having installed a "real" web server software here.
  */
